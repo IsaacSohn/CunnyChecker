@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Blue Archive Cunny Checker",
+  "version": "1.0",
+  "description": "Shows a popup when a Blue Archive character is detected in your search",
+  "icons": {
+    "128": "assets/icon/icon-128.png"
+  },
+  "host_permissions": ["https://www.google.com/*"],
+  "permissions": [
+    "scripting",
+    "activeTab",
+    "tabs",
+    "webNavigation",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.google.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["characters.json"],
+      "matches": ["*://*/*"]
+    }
+  ]
+}
